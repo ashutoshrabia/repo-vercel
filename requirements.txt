@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+transformers
+faiss-cpu
+httpx
+python-multipart
+gitpython
+pillow
+PyPDF2
+sentence-transformers
+flask
+# plus any others you use
