@@ -17,7 +17,12 @@ class QueryRequest(BaseModel):
 # ——— Initialize CLIP model and processor once ———
 clip_model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
 clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
-
+def query_rag_handler(question: str, top_k: int = 3) -> dict:
+    # copy and adapt the body of your query_rag() endpoint,
+    # but without FastAPI decorators and Request parsing.
+    PERPLEXITY_API_KEY = os.getenv("PERPLEXITY_API_KEY")
+    if not PERPLEXITY_API_KEY:
+        raise HTTPException(status_code=500, detail="Missing API key")
 def build_rag_prompt(question: str, context: list) -> str:
     context_str = "\n\n".join(
         f"Source: {item[0]['source']}\nContent: {item[0].get('content', '')}"
